@@ -30,6 +30,7 @@ Basically to develop end to end and perform test you need two application:
 <b>FIXProtocolAcceptor Console Logs</b>
 <br/>
 <br/>
+<pre>
 D:\GIT\FIXProtocolProjects\FIXClientServerImplementationQuickFix\FIXProtocolAcceptor\.\config\acceptor.cfg
 Jul 09, 2019 9:37:43 PM quickfix.SessionSchedule <init>
 INFO: [FIX.4.2:FixAcceptor->FixClient8019] daily, 00:00:00-UTC - 00:00:00-UTC
@@ -77,12 +78,13 @@ fromAdmin 8=FIX.4.29=6735=534=449=FixClient801952=20190709-16:07:58.61256=
 <20190709-16:07:58, FIX.4.2:FixAcceptor->FixClient8019, event> (Sent logout response)
 Jul 09, 2019 9:37:58 PM quickfix.Session disconnect
 INFO: [FIX.4.2:FixAcceptor->FixClient8019] Disconnecting: Received logout request
-
+</pre>
 <br/>
 <br/>
 <b>Fix Protocol Initiator</b>
 <br/>
 <br/>
+<pre>
 <20190709-16:07:51, FIX.4.2:FixClient8019->FixAcceptor, event> (Session FIX.4.2:FixClient8019->FixAcceptor schedule is daily, 00:00:00 UTC - 00:00:00 UTC (daily, 00:00:00 UTC - 00:00:00 UTC))
 <20190709-16:07:51, FIX.4.2:FixClient8019->FixAcceptor, event> (Session state is not current; resetting FIX.4.2:FixClient8019->FixAcceptor)
 <20190709-16:07:51, FIX.4.2:FixClient8019->FixAcceptor, event> (Created session: FIX.4.2:FixClient8019->FixAcceptor)
@@ -119,3 +121,4 @@ INFO: Logging out all sessions
 Inside fromAdmin
 <20190709-16:07:58, FIX.4.2:FixClient8019->FixAcceptor, event> (Received logout response)
 <20190709-16:07:58, FIX.4.2:FixClient8019->FixAcceptor, event> (Disconnecting)
+</pre>
