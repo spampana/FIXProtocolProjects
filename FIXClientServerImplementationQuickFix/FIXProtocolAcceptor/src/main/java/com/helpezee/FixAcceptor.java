@@ -1,6 +1,6 @@
 package com.helpezee;
 
-import java.io.File;
+
 
 import quickfix.Application;
 import quickfix.DefaultMessageFactory;
@@ -42,8 +42,6 @@ public class FixAcceptor extends MessageCracker implements Application {
 
 	public static void main(String[] args) {
 		try {
-			File file = new File("./config/acceptor.cfg");
-			System.out.println(file.getAbsolutePath());
 			SessionSettings settings = new SessionSettings("./config/acceptor.cfg");
 			FixAcceptor acceptor = new FixAcceptor();
 			ScreenLogFactory screenLogFactory = new ScreenLogFactory(settings);
@@ -61,7 +59,7 @@ public class FixAcceptor extends MessageCracker implements Application {
 
 	public void fromAdmin(Message arg0, SessionID arg1) throws FieldNotFound,
 			IncorrectDataFormat, IncorrectTagValue, RejectLogon {
-		System.out.println("fromAdmin " + arg0);
+		System.out.println("1.fromAdmin " + arg0);
 	}
 
 	public void fromApp(Message message, SessionID sessionID)
@@ -93,7 +91,7 @@ public class FixAcceptor extends MessageCracker implements Application {
 	public void onMessage(NewOrderSingle order, SessionID sessionID)
 			throws FieldNotFound, UnsupportedMessageType, IncorrectTagValue {
 		// sending some news to the client.
-		System.out.println("Inside onmessage method");
+		System.out.println("2.Inside onmessage method");
 		try {
 			Session.sendToTarget(new News(new Headline("Hello to OTC Expiration")), sessionID);
 		} catch (SessionNotFound e) {
@@ -115,16 +113,23 @@ public class FixAcceptor extends MessageCracker implements Application {
 
 
 		ExecutionReport executionReport = new ExecutionReport(
-				getOrderIDCounter(), getExecutionIDCounter(),
-				new ExecTransType(ExecTransType.NEW), new ExecType(
-						ExecType.FILL), new OrdStatus(OrdStatus.FILLED),
-				symbol, side, new LeavesQty(0),
-				new CumQty(orderQty.getValue()), new AvgPx(price.getValue()));
+				getOrderIDCounter(), 
+				getExecutionIDCounter(),
+				new ExecTransType(ExecTransType.NEW), 
+				new ExecType(ExecType.FILL), 
+				new OrdStatus(OrdStatus.FILLED),
+				symbol,
+				side, 
+				new LeavesQty(0),
+				new CumQty(orderQty.getValue()), 
+				new AvgPx(price.getValue())
+				);
+		
 		executionReport.set(clOrdID);
 		executionReport.set(orderQty);
 		try {
 			Session.sendToTarget(executionReport, sessionID);
-			System.out.println("NewOrderSingle Execution  Completed...");
+			System.out.println("3.NewOrderSingle Execution  Completed...");
 		} catch (SessionNotFound ex) {
 			ex.printStackTrace();
 			System.out.println("Error during order execution" + ex.getMessage());
