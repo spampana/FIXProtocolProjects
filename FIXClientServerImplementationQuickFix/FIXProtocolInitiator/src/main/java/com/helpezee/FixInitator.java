@@ -67,7 +67,7 @@ public class FixInitator extends ApplicationAdapter {
 		order.set(new OrderQty(4500));
 		order.set(new Price(200.9d));
 		SessionID sessionID = sessions.get(0);
-		System.out.println("Sending Order to Server");
+		System.out.println("4.Sending Order to Server");
 		try {
 			Session.sendToTarget(order, sessionID);
 		} catch (SessionNotFound e) {
@@ -79,14 +79,14 @@ public class FixInitator extends ApplicationAdapter {
 			e1.printStackTrace();
 		}
 		
-		System.out.println("Going to stop socketInitiator");
+		System.out.println("6.Going to stop socketInitiator");
 		fixIniator.socketInitiator.stop();
 	}
 
 	@Override
 	public void onLogon(SessionID sessionId) {
 		super.onLogon(sessionId);
-		System.out.println("Logon requested by client");
+		System.out.println("3.Logon requested by client");
 	}
 
 	@Override
@@ -94,13 +94,13 @@ public class FixInitator extends ApplicationAdapter {
 			throws FieldNotFound, IncorrectDataFormat, IncorrectTagValue,
 			RejectLogon {
 		super.fromAdmin(message, sessionId);
-		System.out.println("Inside fromAdmin");
+		System.out.println("2.Inside fromAdmin");
 	}
 
 	@Override
 	public void onCreate(SessionID sessionId) {
 		super.onCreate(sessionId);
-		System.out.println("Inside onCreate");
+		System.out.println("1.Inside onCreate");
 	}
 
 	@Override
@@ -121,7 +121,7 @@ public class FixInitator extends ApplicationAdapter {
 			try {
 				ExecType executionType = (ExecType) executionReport.getExecType();
 				System.out.println(executionType);
-				System.out.println("Received execution report for the requested order from Exchange \n");
+				System.out.println("5.Received execution report for the requested order from Exchange \n");
 			} catch (FieldNotFound e) {
 				e.printStackTrace();
 			}
